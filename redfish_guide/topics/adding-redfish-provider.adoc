@@ -1,3 +1,31 @@
 == Adding a new {redfish-provider-title} to {product-title}
 
-TODO
+This section describes how to add a new {redfish-provider} to {product-title}
+using {product-gui}. First step is to log in. Then navigate to
+*Compute -> Physical Infrastructure -> Providers* page from the main navigation
+on the left.
+
+image:../../images/docs_redfish_addProvider01_nav.png[alt="Open physical infrastructure providers"]
+
+In the *Configuration* drop-down, select *Add a New Physical Infrastructure
+Provider*:
+
+image:../../images/docs_redfish_addProvider02_add.png[alt="Add a new {redfish-provider}"]
+
+Type in the name of the new {redfish-provider} in the *Name* field and select
+*Redfish* in the *Type* drop-down:
+
+image:../../images/docs_redfish_addProvider03_name_type.png[alt="Name and type of {redfish-provider}"]
+
+This will reveal fields to describe the endpoint of the new {redfish-provider-full}.
+Populate them as needed:
+
+image:../../images/docs_redfish_addProvider04_endpoint.png[alt="Endpoint details of {redfish-provider}"]
+
+To proceed, click *Validate*. If the credential validation was successful, click
+*Add*. The Physical Infrastructure Providers list will display the new provider:
+
+image:../../images/docs_redfish_addProvider05_providers_list_new.png[alt="List of physical infrastructure providers showing the newly added {redfish-provider}"]
+
+It takes about a minute before the inventory gets populated for the first time,
+so use the browser's refresh function to obtain an updated status.

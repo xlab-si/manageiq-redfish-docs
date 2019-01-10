@@ -1,3 +1,24 @@
 == Prerequisites
 
-TODO
+The following preprequisites must be met to start using {redfish-provider-full}:
+
+* One or more physical systems with an embedded BMC that supports {redfish}.
+* Administrator credentials for the BMC.
+* {product-appliance} must be able to reach {redfish-server} on the physical
+  system's BMC network interface through at least one of the appliance's own
+  network interface.
+* For {redfish} events to work, the BMC must support the Server-Side Events
+  (SSE) technology.
+
+== Tested Systems
+
+We have tested the {redfish-provider} against the following systems:
+
+* Dell DSS 9620 with iDRAC9
+* Dell PowerEdge R470 with iDRAC9
+* HPE CloudLine with AMI MegaRAC
+* Lenovo SR 650 with XClarity Controller (CDI320S 1.70 2018-02-28)
+
+== Installing {product-title}
+To install {product-title} please refer to
+link:https://access.redhat.com/documentation/en/red-hat-cloudforms/[{product-title} Installation Guide].

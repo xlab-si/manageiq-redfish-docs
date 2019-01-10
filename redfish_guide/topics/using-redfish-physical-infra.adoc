@@ -1,3 +1,128 @@
 == Using {redfish-provider-full-title}
 
-TODO
+=== Examining {redfish-provider-title} Inventory
+
+The physical infrastructure provider's dashboard provides an overview of the
+inventory at a glance. To view it, first navigate to *Compute ->
+Physical Infrastructure -> Providers* page from the main navigation on the
+left, then click your {redfish-provider}.
+
+image:../../images/docs_redfish_using01_dashboard.png[alt="{redfish-provider} dashboard"]
+
+NOTE: The {redfish-provider} does not support targeted refreshing of the
+inventory. To make sure that the latest information is visible, please perform
+*Configuration -> Refresh Relationships and Power States*. The statuses should
+be up-to-date after a few seconds.
+
+To obtain a tabular view of the inventory, switch to the *Summary View* of the
+{redfish-provider}'s dashboard:
+
+image:../../images/docs_redfish_using02_dashboard_summary.png[alt="Summary view of {redfish-provider} dashboard"]
+
+To view a list of the resources discovered through the inventory, click on
+the respective row of the *Relationships* table. For example, clicking on
+the *Physical Servers* row will take you to the list of physical servers:
+
+image:../../images/docs_redfish_using02_dashboard_summary.png[alt="Summary view of {redfish-provider} dashboard"]
+
+A graphical representation of the managed data center can be displayed by
+navigating to *Compute -> Physical Infrastructure -> Topology*:
+
+image:../../images/docs_redfish_using11_topology.png[alt="Topology of {redfish-provider} entities in the inventory"]
+
+=== Identifying physical systems
+
+Many physical servers are equipped with a LED for identifying it as a specific
+unit. Please use the server's documentation to locate it on the server's
+chassis.
+
+Depending on previous operation, the states of the identify LEDs may be random.
+To make sure that only the selected system's LED will be visible, we first
+make sure that all the physical servers' identify LEDs are off. To do this,
+we visit *Compute -> Physical Infrastructure -> Servers* from the navigation
+on the left. Here, we can see from the *LED State* column the current states of
+the identifying LED for the servers. To select all servers, we click on the
+*Select All* checkbox at the bottom of the page. Now the *Identify* menu
+becomes active:
+
+image:../../images/docs_redfish_using04_all_servers.png[alt="Identify menu and current state of the identify LED for the servers in the inventory"]
+
+From the *Identify* menu, we click the *Turn LED Off*. We confirm the action
+by clicking *OK* in the confirmation prompt that appears in the browser. Then
+we should see the status showing the success of sending the request:
+
+image:../../images/docs_redfish_using05_turn_off_led.png[alt="Confirmation of successfully requesting to turn off the LED"]
+
+The LEDs on the servers should be off within a few seconds. To see the updated
+status in the {product-gui}, use the *Configuration -> Refresh Relationships
+and Power States*, wait a few seconds, then refresh the page in the browser.
+
+image:../../images/docs_redfish_using06_refresh.png[alt="Refreshing the inventory status"]
+
+To control the LED for an individual server, we can first click on the physical
+server's name in the table. We obtain the physical server's summary view, which
+provides the same *Identify* menu as before. Here, we can also see the state
+of the identification LED:
+
+image:../../images/docs_redfish_using03_identify.png[alt="Identify menu and current state of the identify LED"]
+
+To make the server's identification LED blink, we click *Identify -> Blink
+LED*. We get a prompt for confirming the action. After clicking *OK*, the
+:product-gui: shows confirmation of the request sent. Shortly afterwards, the
+selected server's LED should start blinking.
+
+To see the status updated in the {product-gui}, we use the *Configuration ->
+Refresh Relationships and Power States* function, then after a few seconds we
+refresh the page in the browser.
+
+Please refer to the <<ReleaseNotesRedfish>> section for further information
+about the identify LED management actions and statuses.
+
+=== Managing the Physical System's Power Status
+
+Physical servers may be powered off, powered on or restarted remotely
+through {product-gui} using {redfish-provider}.
+
+To power off a particular physical server, we first navigate *Compute ->
+Physical Infrastructure -> Servers* from the navigation on the left. On the
+server list, we click on the server's name. This takes us to the server's
+summary page, which provides the *Power* menu and displays the server's
+current power state:
+
+image:../../images/docs_redfish_using08_server_power_on.png[alt="Power menu and current state of the power to the server"]
+
+We can see that the server is currently powered on. To have it powered off, we
+click on *Power -> Power Off Immediately*. We get a prompt to confirm the
+selected action. After we click *Ok*, we will see the status showing the success
+of sending the request:
+
+image:../../images/docs_redfish_using09_turn_off_power.png[alt="Confirmation of successfully requesting to turn off the server immediately"]
+
+The server should be powered off within a few seconds. To see the updated
+status in the {product-gui}, use the *Configuration -> Refresh Relationships
+and Power States*, wait a few seconds, then refresh the page in the browser.
+Subject to server's vendor's {redfish} implementation, the power status should
+cycle from *On* over *PoweringOff* to finally *Off*.
+
+To turn on all the physical servers in a single batch operation, we visit
+*Compute -> Physical Infrastructure -> Servers* from the navigation on
+the left. Here, we can see from the *Power State* column the current states of
+the power supply for the servers. To select all servers, we click on the *Select
+All* checkbox at the bottom of the page. Now the *Power* menu becomes
+active:
+
+image:../../images/docs_redfish_using010_all_servers.png[alt="Power menu and current power state of the servers in the inventory"]
+
+From the *Power* menu, we click the *Power On*. We confirm the action
+by clicking *OK* in the confirmation prompt that appears in the browser. Then
+we should see the status showing the success of sending the request.
+
+The servers should be powered on within a few seconds. To see the updated
+status in the {product-gui}, use the *Configuration -> Refresh Relationships
+and Power States*, wait a few seconds, then refresh the page in the browser.
+Again depending on the {redfish} implementation, the statuses will cycle from
+*Off* to *PoweringOn* and finally to *On*.
+
+Please refer to the <<ReleaseNotesRedfish>> section for further information
+about the power management actions and statuses.
+

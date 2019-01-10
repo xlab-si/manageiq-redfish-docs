@@ -1,5 +1,5 @@
 <productname>Redfish physical infrastructure provider for CloudForms</productname>
-<productnumber>x.y</productnumber>
+<productnumber>1.0</productnumber>
 <title>Redfish physical infrastructure provider</title>
 <subtitle>User Guide</subtitle>
 <abstract>
@@ -8,8 +8,8 @@
 </abstract>
 <authorgroup id="Author_Group">
         <author>
-                <firstname>XLAB</firstname>
-                <surname>XLAB</surname>
-                <email>???@xlab.si</email>
+                <firstname>Matej</firstname>
+                <surname>Artač</surname>
+                <email>sddc@xlab.si</email>
         </author>
 </authorgroup>

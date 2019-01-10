@@ -1,3 +1,70 @@
 == {redfish-provider-title} Release Notes
 
-TODO
+The {product-title} supports the following {redfish-provider} functionality:
+
+* Inventory
+* LED Identification Operations
+* Power Operations
+* Events
+
+=== Inventory
+{redfish-provider} collects the inventory on all of the discoverable systems,
+populating the database behind the scenes. The first inventory operation is
+automatic, while the subsequent ones occur either regularly or manually.
+The inventory is currently not updated upon {redfish} events.
+
+Depending on the capabilities of the systems under inventory, the {redfish}
+may distinguish between entities such as blocks, racks, sleds, chassis, physical
+servers and others. These categories are mapped into {product-title} categories
+as follows:
+
+[options="header",alt="Physical infrastructure provider entity mapping"]
+|===============================================================================
+| {product-title_short} Convention. | {redfish} Convention.
+| Physical Rack                     | Rack
+| Physical Chassis                  | Block, Sled, Chassis
+| Physical Server                   | System
+|===============================================================================
+
+
+=== LED Identification Operations
+Physical systems may support identification through remotly manipulating a
+dedicated identification LED located somewhere on the enclosure.
+{product-title} provides the following identification LED operations:
+
+[options="header",alt="Identity LED action to status mapping"]
+|===============================================================================
+| Identity action.                   | Expected LED state after action.
+| Turn LED On                        | On
+| Turn LED Off                       | Off
+| Blink LED                          | Blinking
+|===============================================================================
+
+=== Power Operations
+Power operations change the status of the power supply of the system and can
+also trigger a reboot of the target physical system. It is always possible
+to request any power operation regardless of the system's current power
+state. However, depending on the vendor's implementation, some operations
+may not have any effect if the system is in a wrong state at the time when
+it receives the request.
+
+[options="header",alt="Power operation to power state mapping"]
+|===============================================================================
+| Power operation.                   | Expected power state after action.
+| Power On                           | Powering On, On
+| Power Off                          | Powering Off, Off
+| Power Off Immediately              | Powering Off, Off
+| Restart                            | Powering Off, Off, Powering On, On
+| Restart Immediately                | Powering Off, Off, Powering On, On
+|===============================================================================
+
+The following power actions are *not* supported:
+
+* Restart to System Setup
+* Restart Management Controller
+
+=== Events
+{product-title} supports {redfish} events from the vendors that support the
+Server-Side Events (SSE) technology. The events received are then completely
+dependent on the vendor's implementation and the Baseboard Management Controller
+(BMC) configuration.

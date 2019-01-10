@@ -1,0 +1,15 @@
+<productname>Redfish physical infrastructure provider for CloudForms</productname>
+<productnumber>x.y</productnumber>
+<title>Redfish physical infrastructure provider</title>
+<subtitle>User Guide</subtitle>
+<abstract>
+    <para>This documentation includes the instructions on adding and using Redfish physical infrastructure provider in Red Hat CloudForms.</para>
+    <para>Functionality covered by CloudForms plug-in for Redfish is described in <link xlink:href="./topics/redfish-release-notes.adoc">Relese Notes</link>.</para>
+</abstract>
+<authorgroup id="Author_Group">
+        <author>
+                <firstname>XLAB</firstname>
+                <surname>XLAB</surname>
+                <email>???@xlab.si</email>
+        </author>
+</authorgroup>

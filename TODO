@@ -1,0 +1,9 @@
+TODOs:
+
+* topics/redfish-release-notes.adoc
+* topics/prerequisites.adoc
+* topics/adding-redfish-provider.adoc
+* topics/vcd-vapp-provision.adoc
+* topics/vcd-reconfigure.adoc
+* topics/vcd-console-access.adoc
+* redfish_guide/docinfo.xml: author, contacts

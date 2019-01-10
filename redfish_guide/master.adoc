@@ -1,0 +1,55 @@
+:imagesdir:    images
+:vernum:       0.1
+:toc:          left
+:toclevels:    3
+:compat-mode:
+:experimental:
+:login:
+:numbered:
+
+//
+// Uncomment following lines when compiling locally. In production, those values are filled from
+// caller, see https://github.com/ManageIQ/manageiq_docs/tree/master/common/attributes.
+//
+
+//:product-title: ManageIQ
+//:product-title_short: ManageIQ
+//:product-title_short_l: mangeiq
+//:product-title_abbr: miq
+//:product-title_abbr_uc: MIQ
+
+//:product-title: Red Hat CloudForms
+//:product-title_short: CloudForms
+//:product-title_short_l: cloudforms
+//:product-title_abbr: cfme
+//:product-title_abbr_uc: CFME
+
+//
+// Handy shortcuts
+//
+:product-gui:                 {product-title_short} graphical interface
+:product-appliance:           {product-title_short} appliance
+:product-appliance_title:     {product-title_short} Appliance
+:product-console:             {product-appliance} console
+:redfish:                     Redfish
+:redfish-provider:            {redfish} physical infrastructure provider
+:redfish-provider-title:      {redfish} Physical Infrastructure Provider
+:redfish-provider-full:       {redfish-provider} for {product-title}
+:redfish-provider-full-title: {redfish-provider-title} for {product-title}
+
+= {redfish-provider-full} User Guide
+
+[[OverviewRedfish]]
+include::topics/overview.adoc[]
+
+[[ReleaseNotesRedfish]]
+include::topics/redfish-release-notes.adoc[]
+
+[[PrerequisitesRedfish]]
+include::topics/prerequisites.adoc[]
+
+[[AddingARedfishProvider]]
+include::topics/adding-redfish-provider.adoc[]
+
+[[UsingRedfishPhysicalInfra]]
+include::topics/using-redfish-physical-infra.adoc[]

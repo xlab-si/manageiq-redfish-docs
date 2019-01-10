@@ -1,0 +1,3 @@
+== Adding a new {redfish-provider-title} to {product-title}
+
+TODO

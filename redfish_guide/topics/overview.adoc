@@ -1,7 +1,7 @@
 == Overview
 
 https://www.dmtf.org/standards/redfish[DMTF's Redfish] is a standard for
-Out-Of-Bound (OOB) management of physical infrastructure.
+Out-Of-Band (OOB) management of physical infrastructure.
 
 This documentation provides configuration steps required by
 {redfish-provider-full}. Functionality covered is described in

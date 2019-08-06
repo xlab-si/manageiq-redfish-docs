@@ -1,4 +1,4 @@
-:imagesdir:    images
+:imagesdir:    ../images
 :vernum:       0.1
 :toc:          left
 :toclevels:    3

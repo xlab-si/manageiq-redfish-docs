@@ -36,18 +36,16 @@ Many physical servers are equipped with a LED for identifying it as a specific
 unit. Please use the server's documentation to locate it on the server's
 chassis.
 
-Depending on previous operation, the states of the identify LEDs may be random.
-To make sure that only the selected system's LED will be visible, we first
-make sure that all the physical servers' identify LEDs are off. To do this,
-we visit *Compute -> Physical Infrastructure -> Servers* from the navigation
-on the left. Here, we can see from the *LED State* column the current states of
-the identifying LED for the servers. To select all servers, we click on the
-*Select All* checkbox at the bottom of the page. Now the *Identify* menu
-becomes active:
+To identify a single system or a specific set of physical systems, we start by
+making sure that all the LEDs are off. To do this, we visit *Compute -> Physical
+Infrastructure -> Servers* from the navigation on the left. Here, we can see
+from the *LED State* column the current states of the identifying LED for the
+servers. To select all servers, we click on the *Select All* checkbox at the
+bottom of the page. Now the *Identify* menu becomes active:
 
 image::docs_redfish_using04_all_servers.png[alt="Identify menu and current state of the identify LED for the servers in the inventory",500,align="center"]
 
-From the *Identify* menu, we click the *Turn LED Off*. We confirm the action
+From the *Identify* menu, we click the *Turn Off LED*. We confirm the action
 by clicking *OK* in the confirmation prompt that appears in the browser. Then
 we should see the status showing the success of sending the request:
 
@@ -68,7 +66,7 @@ image::docs_redfish_using03_identify.png[alt="Identify menu and current state of
 
 To make the server's identification LED blink, we click *Identify -> Blink
 LED*. We get a prompt for confirming the action. After clicking *OK*, the
-:product-gui: shows confirmation of the request sent. Shortly afterwards, the
+{product-gui} shows confirmation of the request sent. Shortly afterwards, the
 selected server's LED should start blinking.
 
 To see the status updated in the {product-gui}, we use the *Configuration ->
@@ -80,10 +78,10 @@ about the identify LED management actions and statuses.
 
 === Managing the Physical System's Power Status
 
-Physical servers may be powered off, powered on or restarted remotely
-through {product-gui} using {redfish-provider}.
+Physical servers may be remotely powered off, powered on or restarted through
+{product-gui} using {redfish-provider}.
 
-To power off a particular physical server, we first navigate *Compute ->
+To power off a particular physical server, we first navigate to *Compute ->
 Physical Infrastructure -> Servers* from the navigation on the left. On the
 server list, we click on the server's name. This takes us to the server's
 summary page, which provides the *Power* menu and displays the server's
@@ -96,7 +94,7 @@ click on *Power -> Power Off Immediately*. We get a prompt to confirm the
 selected action. After we click *Ok*, we will see the status showing the success
 of sending the request:
 
-image::docs_redfish_using09_turn_off_power.png[alt="Confirmation of successfully requesting to turn off the server immediately",200,align="center"]
+image::docs_redfish_using09_turn_off_power.png[alt="Confirmation of successfully requesting to turn off the server immediately",300,align="center"]
 
 The server should be powered off within a few seconds. To see the updated
 status in the {product-gui}, use the *Configuration -> Refresh Relationships

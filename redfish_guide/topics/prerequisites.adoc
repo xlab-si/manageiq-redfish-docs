@@ -9,15 +9,22 @@ The following preprequisites must be met to start using {redfish-provider-full}:
   network interface.
 * For {redfish} events to work, the BMC must support the Server-Side Events
   (SSE) technology.
+* One or more functional PXE servers must be configured and running on a network
+  that is accessible both to {product-appliance} and the BMCs of the physical
+  systems. The PXE servers need to be populated with the appropriate Operating
+  System boot and installation files.
 
 == Tested Systems
 
 We have tested the {redfish-provider} against the following systems:
 
-* Dell DSS 9620 with iDRAC9
-* Dell PowerEdge R470 with iDRAC9
-* HPE CloudLine CL21000 with AMI MegaRAC SP-X (30810600 1.11.0 2018-6-21)
-* Lenovo SR 650 with XClarity Controller (CDI320S 1.70 2018-02-28)
+* Dell PowerEdge R630 with iDRAC8 version 2.60.60.60
+* Dell PowerEdge R640 with iDRAC9 version 3.30.30.30
+* Dell PowerEdge R740xd with iDRAC9 version 3.30.30.30
+* HPE ProLiant DL360 Gen10 with iLO 5 version 1.40 and licensed with iLO
+  Standard license
+* Supermicro System SuperServer series X11SDV version 1.25 with OOB and
+  SFT-DCMS-Single license
 
 == Installing {product-title}
 To install {product-title} please refer to

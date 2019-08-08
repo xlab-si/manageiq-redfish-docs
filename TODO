@@ -1,5 +1,7 @@
 TODOs:
 
-* topics/prerequisites.adoc
-  * tested systems specifics
-* redfish_guide/docinfo.xml: author, contacts
+* prerequisites.adoc
+  * installing PXE?
+  * installing firmware registry?
+* using-redfish-physical-infra.adoc
+  * refer to configurating Compute > Infrastructure > PXE

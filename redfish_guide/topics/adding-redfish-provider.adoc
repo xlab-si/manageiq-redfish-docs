@@ -1,7 +1,7 @@
 == Adding a new {redfish-provider-title} to {product-title}
 
 This section describes how to add a new {redfish-provider} to {product-title}
-using {product-gui}. First step is to log in. Then navigate to
+using {product-gui}. The first step is to log in. Then navigate to
 *Compute -> Physical Infrastructure -> Providers* page from the main navigation
 on the left.
 

@@ -9,9 +9,10 @@ The {product-title} supports the following {redfish-provider} functionality:
 
 === Inventory
 {redfish-provider} collects the inventory on all of the discoverable systems,
-populating the database behind the scenes. The first inventory operation is
-automatic, while the subsequent ones occur either regularly or manually.
-The inventory is currently not updated upon {redfish} events.
+populating the database behind the scenes. When a new provider is added,
+the inventory operation is automatic. The subsequent inventory updates occur
+either regularly or manually. The inventory is currently not updated upon
+{redfish} events.
 
 Depending on the capabilities of the systems under inventory, the {redfish}
 may distinguish between entities such as blocks, racks, sleds, chassis, physical
@@ -28,9 +29,9 @@ as follows:
 
 
 === LED Identification Operations
-Physical systems may support identification through remotly manipulating a
-dedicated identification LED located somewhere on the enclosure.
-{product-title} provides the following identification LED operations:
+Physical systems may feature a built-in LED somewhere on its enclosure that can
+help visually identify the system instance by using its remotely controlled
+state. {product-title} provides the following identification LED operations:
 
 [options="header",alt="Identity LED action to status mapping"]
 |===============================================================================

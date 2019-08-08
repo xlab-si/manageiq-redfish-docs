@@ -124,3 +124,74 @@ Again depending on the {redfish} implementation, the statuses will cycle from
 Please refer to the <<ReleaseNotesRedfish>> section for further information
 about the power management actions and statuses.
 
+=== Physical Server Provisioning
+{redfish-provider-full} lets the users request to initiate network booting of
+the physical systems into a selected Operating System. The process relies on
+the Preboot Execution Environment (PXE) functionality offered by the services
+in the data center to the physical servers, which, in turn, are capable of
+loading the PXE automatically off of the network. Upon confirmation of the
+Physical Server Provisioning request, the {redfish-provider} configures the
+PXE server with the network boot parameters specified in the request for the
+servers defined in the request. It then restarts these servers into one-time
+network boot, initiating the provisioning.
+
+We start off by visiting the physical servers list in *Compute -> Physical
+Infrastructure -> Servers*. On the server list, we check one or more checkboxes
+to select the servers to be used in the provisioning request. This enables the
+*Lifecycle* menu.
+
+image::docs_redfish_using15_lifecycle_provisioning_menu.png[alt="Lifecycle menu for Provisioning Selected Physical Servers",350,align="center"]
+
+Click the *Lifecycle -> Provision Selected Physical Servers*. This opens the
+dialog for filling in the request.
+
+image::docs_redfish_using16_provisioning_dialog_default.png[alt="Provision Selected Physical Servers dialog",350,align="center"]
+
+NOTE: If from the server list, we click on a server, then we can initiate the
+same dialog by clicking *Lifecycle -> Provision Physical Server* from the
+Physical Server's summary.
+
+The dialog informs us on the number of servers selected for this request. It
+presents the following fields that we need to fill:
+
+* *PXE Server*: selection of the PXE servers registered in the
+  {product-appliance}.
+* *PXE Image*: pick a name of the Operating System image that the selected
+  servers should be booted into.
+* *Customization Template*: pick the name of the customization template to be
+  applied at each selected server. The customization templates provide custom
+  instructions used by the Operating System installers to perform unattended
+  installation.
+
+image::docs_redfish_using17_provisioning_dialog_example.png[alt="Provision Selected Physical Servers dialog - example",350,align="center"]
+
+Send the request by clicking *Provision*.
+
+Next, a privileged user of {product-appliance} has to approve the request. They
+visit *Services -> Requests* and look for the request of type Physical Server
+Provision and request status Pending.
+
+image::docs_redfish_using18_requests_provisioning_pending.png[alt="Pending provisioning request on request list",500,align="center"]
+
+They should open the request and click the Approve (the tick) button, then
+provide text input to *Reason* and click *Submit*.
+
+image::docs_redfish_using19_provisioning_request_approve.png[alt="Provisioning request approval",450,align="center"]
+
+They will receive a pop-up showing that they have successfully approved the
+request.
+
+image::docs_redfish_using20_provisioning_request_approval_notification.png[alt="Provisioning request success docs_redfish_using20_provisioning_request_approval_notification",500,align="center"]
+
+After a few minutes, we refresh the requests list and find that the
+request state has changed to Provisioned.
+
+image::docs_redfish_using21_provisioning_request_provisioned.png[alt="Provisioning request provisioned",500,align="center"]
+
+NOTE: The {redfish-provider-full} currently has no means of knowing when the
+provisioning has actually finished. Therefore, the status Provisioned indicates
+that the {redfish-provider} has successfully configured the PXE server to serve
+the selected image and customization template, has set the servers to boot once into network boot, and rebooted the servers. This initiates the actual process
+of Operating System booting and installation, which then takes additional time
+before it finishes.
+

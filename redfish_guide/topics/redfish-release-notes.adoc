@@ -6,6 +6,8 @@ The {product-title} supports the following {redfish-provider} functionality:
 * LED Identification Operations
 * Power Operations
 * Events
+* Physical Server Provisioning
+* Physical Server Firmware Updates
 
 === Inventory
 {redfish-provider} collects the inventory on all of the discoverable systems,
@@ -69,3 +71,22 @@ The following power actions are *not* supported:
 Server-Side Events (SSE) technology. The events received are then completely
 dependent on the vendor's implementation and the Baseboard Management Controller
 (BMC) configuration.
+
+=== Physical Server Provisioning
+With {redfish-provider} it is possible to request performing bare-metal
+provisioning of an operating system on the physical systems. This lets the users
+boot selected physical servers into live Operating Systems or run full
+Operating System installations.
+
+{redfish-provider} relies on {product-title}'s built-in support for PXE servers
+to serve the Operating System boot files and customization templates.
+
+=== Physical Server Firmware Updates
+{product-title} enables performing firmware updates of the supported {redfish}
+physical systems. The Firmware Updates functionality consists of the following:
+
+* Firmware Registry contains the list of the images, binaries and executables
+  that are the payload in the firmware update process. The registry provides
+  the inventory of the available firmware updates by vendor, system and model.
+* Update Firmware of Physical Systems Lifecycle request, enabling requests for
+  performing the firmware updates on the selected servers.

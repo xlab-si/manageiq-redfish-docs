@@ -135,6 +135,92 @@ PXE server with the network boot parameters specified in the request for the
 servers defined in the request. It then restarts these servers into one-time
 network boot, initiating the provisioning.
 
+==== Configuring PXE
+
+In {product-title}, a PXE server represents a collection of services and files
+that, all together, enable computers to boot into Operating Systems from the
+network:
+
+* The {product-title} needs to be able to connect to the PXE server for both
+  reading and writing using either NFS or SAMBA protocol. This is also called
+  the depot type.
+* The physical servers' NICs that are connected to the network boot network
+  require a TFTP access for reading the initial executable file containing the
+  PXE itself, and the HTTP access for downloading the Operating Systems' files.
+
+The process of configuring the PXE Servers is similar to that explained in the
+*PXE Provisioning* section of the *Provisioning Virtual Machines and Instances*
+chapter.
+
+We visit *Compute -> Infrastructure -> PXE*. Then, we click *Configuration ->
+Add a New PXE server*. We fill in the fields to describe the server.
+
+image::docs_redfish_using22_new_pxe_server_dialog.png[alt="New PXE Server dialog",512,align="center"]
+
+* *Name*: enter the human-friendly display name for this PXE server.
+* *Depot Type*: select the protocol supported by the server that the
+  {product-appliance} can write changes to.
+* *URI* (Network File System depots only): the access point to the Network
+  File System mount.
+* *Access URL*: the address of the HTTP server.
+* *PXE Directory*: the path, relative to the depot type's mount point, to the
+  PXE menu folder.
+* *Customization Directory*: relative path to the customization templates files.
+  This directory will be appended to the _Access URL_, resulting in a prefix
+  for the operating systems to obtain the customization templates.
+* *Filename*: relative path to the default boot menu file. {product-appliance}
+  will read this file to retrieve the list of available operating systems on the
+  PXE server.
+
+We click *Add* to add the new server. Then we perform *Configuration -> Refresh
+Relationships* and, after a few seconds, refresh the browser.
+
+image::docs_redfish_using24_refresh_relationships.png[alt="PXE Server view",423,align="center"]
+
+Once the *PXE Images* list gets populated, we first need to assign a system
+image type to each PXE image. This creates an association between a PXE image
+and the corresponding Customization Templates. Later, when we will create
+provisioning requests, we will need to supply both the PXE image to provision
+and the customization template, otherwise we won't be able to complete the
+request.
+
+image::docs_redfish_using23_pxe_server.png[alt="PXE Server view",777,align="center"]
+
+We switch to the *System Image Types* and use *Configuration -> Add a new
+System Image Type* to add new system image types as needed.
+
+image::docs_redfish_using25_add_system_image_type.png[alt="Add new System Image Type",491,align="center"]
+
+In the *Type* field, we leave the value *<Any>*. We confirm the new system image
+type's settings by clicking *Add*.
+
+Then we switch back to the *PXE Servers* tab and select the first PXE image,
+then click *Configuration -> Edit this PXE Image*.
+
+image::docs_redfish_using26_pxe_image.png[alt="View PXE Image properties",643,align="center"]
+
+From the *Type* drop-down, we select the appropriate name and click *Save*. We
+repeat the process for all the other PXE images.
+
+Finally, we switch to the *Customization Templates* tab. This shows the list
+of the system image types. For each system image type, we can create one or
+more customization templates, which the Operating System's installer process
+will use during the installation phase of the provisioning. For the Red Hat
+based systems, this will be a Kickstart file.
+
+image::docs_redfish_using27_customization_template.png[alt="Customization Template",857,align="center"]
+
+The *Configuration* menu options let us copy an existing customization template
+into a new one, add a new blank one, or edit an existing one. In all cases,
+we use the *Name* field to type in a human-friendly name, provide an optional
+*Description*, select from the *Image Type*, and provide the *Type*.
+The *Script* is a free-form text editing field where we can type and edit
+the actual script.
+
+We should now be set to create a provisioning request.
+
+==== Requesting Physical Server Provisioning
+
 We start off by visiting the physical servers list in *Compute -> Physical
 Infrastructure -> Servers*. On the server list, we check one or more checkboxes
 to select the servers to be used in the provisioning request. This enables the
@@ -167,7 +253,8 @@ image::docs_redfish_using17_provisioning_dialog_example.png[alt="Provision Selec
 
 Send the request by clicking *Provision*.
 
-Next, a privileged user of {product-appliance} has to approve the request. They
+==== Approving the Request for Physical Server Provisioning
+A privileged user of {product-appliance} has to approve the request. They
 visit *Services -> Requests* and look for the request of type Physical Server
 Provision and request status Pending.
 

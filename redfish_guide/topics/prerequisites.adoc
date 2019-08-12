@@ -10,7 +10,8 @@ The following preprequisites must be met to start using {redfish-provider-full}:
 * For {redfish} events to work, the BMC must support the Server-Side Events
   (SSE) technology.
 * One or more functional PXE servers must be configured and running on a network
-  that is accessible both to {product-appliance}. The PXE servers need to be
+  that is accessible both to {product-appliance}. They need to offer SAMBA or
+  NFS write access, and read-only TFTP and HTTPS access. They also need to be
   populated with the appropriate Operating System boot and installation files.
 * The target systems must be able to perform a network boot on at least one of
   their system's NICs (not the BMC network). This NIC must be able to reach the

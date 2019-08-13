@@ -7,6 +7,7 @@ The {product-title} supports the following {redfish-provider} functionality:
 * Power Operations
 * Events
 * Physical Server Provisioning
+* Physical Server Firmware Update
 
 === Inventory
 {redfish-provider} collects the inventory on all of the discoverable systems,
@@ -81,12 +82,19 @@ Operating System installations.
 Execution Environment (PXE) servers to serve the Operating System boot files and
 customization templates.
 
-=== Physical Server Firmware Updates
-{product-title} enables performing firmware updates of the supported {redfish}
-physical systems. The Firmware Updates functionality consists of the following:
+=== Physical Server Firmware Update
+// We tag following chunk of text so that we can reuse it later with `include::`
+// tag::fw-update-intro[]
+{redfish-provider} enables performing firmware update of the supported {redfish}
+physical systems. The Firmware Update functionality consists of the following:
 
-* Firmware Registry contains the list of the images, binaries and executables
-  that are the payload in the firmware update process. The registry provides
-  the inventory of the available firmware updates by vendor, system and model.
-* Update Firmware of Physical Systems Lifecycle request, enabling requests for
-  performing the firmware updates on the selected servers.
+* *Firmware Registry integration*. Firmware Registry is an external service that contains
+  a list of binaries that are the payload in the firmware update process. The registry
+  integration provides the inventory of the available firmware binaries tagged by
+  manufacturer and system model. Only compatible binaries are offered to install on a
+  specific server.
+* *Firmware Update request*. Firmware Update process is implemented in a form of
+  {product-title_short} request which can be initialized either from physical server details
+  page or list page. The latter allows one to initiate firmware update process on a number
+  of servers in one go.
+// end::fw-update-intro[]

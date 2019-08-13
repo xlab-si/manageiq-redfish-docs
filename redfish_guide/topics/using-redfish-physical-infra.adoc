@@ -284,3 +284,54 @@ the selected image and customization template, has set the servers to boot once 
 of Operating System booting and installation, which then takes additional time
 before it finishes.
 
+=== Physical Server Firmware Update
+include::redfish-release-notes.adoc[tags=fw-update-intro]
+
+NOTE: This guide assumes we have firmware registry already set up and registered with
+{product-title_short}. Moreover, this guide assumes registry contains at least one
+binary compatible with the physical server we are targeting for update.
+
+We start off by visiting the physical servers list in *Compute -> Physical
+Infrastructure -> Servers*. On the server list, we check one or more checkboxes
+to select the servers to be targeted for firmware update. This enables the
+*Lifecycle* menu.
+
+image::firmware_update/center_menu.png[alt="Lifecycle menu for Firmware Update of Selected Physical Servers",550,align="center"]
+
+Click the *Lifecycle -> Update Firmware of Physical Servers*. This opens the
+dialog for filling in the request.
+
+image::firmware_update/popup.png[alt="Update Physical Server's Firmware dialog",350,align="center"]
+
+NOTE: Same dialog can be accessed from within physical server's details page.
+
+The dialog informs us on the number of servers selected for this request. It also
+presents the following one field that we need to fill:
+
+* *Firmware Binary*: selection of the firmware binary to install on selected physical servers
+
+image::firmware_update/popup_filled.png[alt="Update Physical Server's Firmware dialog (filled)",350,align="center"]
+
+NOTE: Only compatible firmware binaries are available to choose from based on our current
+selection of physical servers. If we don't have any firmware binaries
+listed this means that either we don't have Firmware Registry set up correctly (visit
+*Compute -> Infrastructure -> Firmware Registry* to set it up) or that there are simply no
+compatible firmware binaries available for the selected physical server.
+
+
+Select desired firmware binary from the list and click *Apply Firmware*.
+
+image::firmware_update/request_created.png[alt="Firmware Update request created",1227,align="center"]
+
+Firmware Update request gets executed without manual approval (it gets auto-approved). You can
+track its progress by visiting *Services -> Requests* and look for the request of type
+Physical Server Firmware Update.
+
+image::firmware_update/request_list_view.png[alt="Firmware Update request completed (list view)",800,align="center"]
+
+Click on the request to examine more details. Firmware Update process is completed when it
+reaches *Finished* Request State (see screenshot below). If Status is *Ok* it means firmware
+got successfully updated while *Error* state indicates there were some problems hence firmware
+update was not fully performed on all target physical servers.
+
+image::firmware_update/request_details_view.png[alt="Firmware Update request completed (details view)",500,align="center"]

@@ -9,7 +9,7 @@ The following prerequisites must be met to start using {redfish-provider-full}:
 For {redfish} events to work, the BMC must support the Server-Side Events
 (SSE) technology.
 
-Physical system provisioning additionally requires:
+=== Physical system provisioning additionally requires:
 
 * DHCP server that is configured for PXE boot.
 * PXE server, consisting of:
@@ -31,6 +31,12 @@ and this is what needs to be shared over NFS or SMB. Boot menus are usually
 placed in the _pxelinux.cfg_ subfolder and are available for download over
 TFTP. Customization templates are most often stored in the _customization_
 subfolder and can be downloaded over HTTP(S).
+
+=== Firmware Update feature additionally requires:
+
+* A service that provides the firmware registry.
+* Firmware registry has to provide tagged firmware update binaries (the `manufacturer`
+and the `model` tags) where both of the tag values must match target system's exact values.
 
 == Tested Systems
 

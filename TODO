@@ -5,3 +5,6 @@ TODOs:
   * installing firmware registry?
 * using-redfish-physical-infra.adoc
   * refer to configurating Compute > Infrastructure > PXE
+* TODO(miha-plesko): mention that external state machine can be customized e.g. you can run
+  custom actions before and after provisioning if you want to
+* TODO(miha-plesko): describe how to add FirmwareRegistry to CloudForms

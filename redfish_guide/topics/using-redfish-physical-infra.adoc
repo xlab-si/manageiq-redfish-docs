@@ -125,32 +125,23 @@ Please refer to the <<ReleaseNotesRedfish>> section for further information
 about the power management actions and statuses.
 
 === Physical Server Provisioning
-{redfish-provider-full} lets the users request to initiate network booting of
-the physical systems into a selected Operating System. The process relies on
-the Preboot Execution Environment (PXE) functionality offered by the services
-in the data center to the physical servers, which, in turn, are capable of
-loading the PXE automatically off of the network. Upon confirmation of the
-Physical Server Provisioning request, the {redfish-provider} configures the
-PXE server with the network boot parameters specified in the request for the
-servers defined in the request. It then restarts these servers into one-time
-network boot, initiating the provisioning.
 
-==== Configuring PXE
+{redfish-provider-full} lets the users boot physical servers into a selected
+Operating System over the network. The process relies on a properly configured
+DHCP and PXE servers in the data center.
 
-In {product-title}, a PXE server represents a collection of services and files
-that, all together, enable computers to boot into Operating Systems from the
-network:
+Users must first create a new provisioning request and get it approved. Once
+the provisioning request is approved, the {redfish-provider} places the
+suitable NBP boot menus and configuration templates on the PXE server,
+configures physical servers to boot over the network, and restarts them. This
+in turn starts the Operating System installation or live boot.
 
-* The {product-title} needs to be able to connect to the PXE server for both
-  reading and writing using either NFS or SAMBA protocol. This is also called
-  the depot type.
-* The physical servers' NICs that are connected to the network boot network
-  require a TFTP access for reading the initial executable file containing the
-  PXE itself, and the HTTP access for downloading the Operating Systems' files.
+==== Adding PXE server to the {product-title}
 
-The process of configuring the PXE Servers is similar to that explained in the
-*PXE Provisioning* section of the *Provisioning Virtual Machines and Instances*
-chapter.
+In {product-title}, a PXE server represents a NFS or SMB depot where certain
+files and folders have a special meaning. The process of adding a PXE Server
+is similar to that explained in the *PXE Provisioning* section of the
+*Provisioning Virtual Machines and Instances* chapter.
 
 We visit *Compute -> Infrastructure -> PXE*. Then, we click *Configuration ->
 Add a New PXE server*. We fill in the fields to describe the server.
@@ -162,18 +153,23 @@ image::docs_redfish_using22_new_pxe_server_dialog.png[alt="New PXE Server dialog
   {product-appliance} can write changes to.
 * *URI* (Network File System depots only): the access point to the Network
   File System mount.
-* *Access URL*: the address of the HTTP server.
-* *PXE Directory*: the path, relative to the depot type's mount point, to the
-  PXE menu folder.
-* *Customization Directory*: relative path to the customization templates files.
-  This directory will be appended to the _Access URL_, resulting in a prefix
-  for the operating systems to obtain the customization templates.
-* *Filename*: relative path to the default boot menu file. {product-appliance}
-  will read this file to retrieve the list of available operating systems on the
-  PXE server.
+* *Access URL*: the address of the HTTP server that serves the content of the
+  _Customization Directory_ folder.
+* *PXE Directory*: the path to the boot menu directory.
+* *Customization Directory*: the path to the directory with customization
+  templates.
+* *Filename*: the path to the boot menu file that contains menu entries for
+  all available Operating System images.
+
+All of the paths are relative to the depot access point. During provisioning,
+{product-title} will mount the depot, place the MAC-address-specific boot
+menus into the _PXE Directory_, and write MAC-address-specific customization
+templates to the _Customization Directory_.
 
 We click *Add* to add the new server. Then we perform *Configuration -> Refresh
-Relationships* and, after a few seconds, refresh the browser.
+Relationships*. This will retrieve the list of available Operating System
+images from the boot menu file that we listed in the *Filename* field. Give
+refresh process a few seconds to finish and refresh the browser.
 
 image::docs_redfish_using24_refresh_relationships.png[alt="PXE Server view",423,align="center"]
 

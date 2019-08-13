@@ -1,21 +1,36 @@
 == Prerequisites
 
-The following preprequisites must be met to start using {redfish-provider-full}:
+The following prerequisites must be met to start using {redfish-provider-full}:
 
-* One or more physical systems with an embedded BMC that supports {redfish}.
+* Physical system with an embedded BMC that supports {redfish}.
 * Administrator credentials for the BMC.
-* {product-appliance} must be able to reach {redfish-server} on the physical
-  system's BMC network interface through at least one of the appliance's own
-  network interface.
-* For {redfish} events to work, the BMC must support the Server-Side Events
-  (SSE) technology.
-* One or more functional PXE servers must be configured and running on a network
-  that is accessible both to {product-appliance}. They need to offer SAMBA or
-  NFS write access, and read-only TFTP and HTTPS access. They also need to be
-  populated with the appropriate Operating System boot and installation files.
-* The target systems must be able to perform a network boot on at least one of
-  their system's NICs (not the BMC network). This NIC must be able to reach the
-  PXE server.
+* {product-appliance} must be able to reach physical system's BMC.
+
+For {redfish} events to work, the BMC must support the Server-Side Events
+(SSE) technology.
+
+Physical system provisioning additionally requires:
+
+* DHCP server that is configured for PXE boot.
+* PXE server, consisting of:
+** A set of Operating System boot and installation files.
+** A PXELinux menu or iPXE script containing menu entries for all available
+   Operating Systems.
+** TFTP service that is capable of serving a Network Bootstrap Program (NBP),
+   boot menus and Operating System images.
+** HTTP(S) service for serving customization templates (kickstart, sysprep
+   files) and Operating System images.
+** NFS or SMB service with read and write access to the files that are
+   served over TFTP and HTTP(S) during the network boot process and Operating
+   System installation.
+* The target physical system must be able to perform a network boot on at
+  least one of its system's NICs (not the BMC network).
+
+Typically, PXE server has network boot files stored under _/var/lib/tftpboot_
+and this is what needs to be shared over NFS or SMB. Boot menus are usually
+placed in the _pxelinux.cfg_ subfolder and are available for download over
+TFTP. Customization templates are most often stored in the _customization_
+subfolder and can be downloaded over HTTP(S).
 
 == Tested Systems
 

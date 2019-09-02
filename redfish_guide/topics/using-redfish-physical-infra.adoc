@@ -247,6 +247,12 @@ presents the following fields that we need to fill:
 
 image::docs_redfish_using17_provisioning_dialog_example.png[alt="Provision Selected Physical Servers dialog - example",350,align="center"]
 
+WARNING: {redfish-provider-full} does not check for the state of provisioning
+of the selected systems from any of the previous provisioning workflows.
+Depending on the selected PXE image and customization template, proceeding with
+the provisioning *might destroy any operating systems and data on the selected
+servers*.
+
 Send the request by clicking *Provision*.
 
 ==== Approving the Request for Physical Server Provisioning

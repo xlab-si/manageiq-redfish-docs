@@ -260,22 +260,22 @@ A privileged user of {product-appliance} has to approve the request. They
 visit *Services -> Requests* and look for the request of type Physical Server
 Provision and request status Pending.
 
-image::docs_redfish_using18_requests_provisioning_pending.png[alt="Pending provisioning request on request list",500,align="center"]
+image::docs_redfish_using18_requests_provisioning_pending.png[alt="Pending provisioning request on request list",800,align="center"]
 
 They should open the request and click the Approve (the tick) button, then
 provide text input to *Reason* and click *Submit*.
 
-image::docs_redfish_using19_provisioning_request_approve.png[alt="Provisioning request approval",450,align="center"]
+image::docs_redfish_using19_provisioning_request_approve.png[alt="Provisioning request approval",800,align="center"]
 
 They will receive a pop-up showing that they have successfully approved the
 request.
 
-image::docs_redfish_using20_provisioning_request_approval_notification.png[alt="Provisioning request success docs_redfish_using20_provisioning_request_approval_notification",500,align="center"]
+image::docs_redfish_using20_provisioning_request_approval_notification.png[alt="Provisioning request success docs_redfish_using20_provisioning_request_approval_notification",800,align="center"]
 
 After a few minutes, we refresh the requests list and find that the
 request state has changed to Provisioned.
 
-image::docs_redfish_using21_provisioning_request_provisioned.png[alt="Provisioning request provisioned",500,align="center"]
+image::docs_redfish_using21_provisioning_request_provisioned.png[alt="Provisioning request provisioned",800,align="center"]
 
 NOTE: The {redfish-provider-full} currently has no means of knowing when the
 provisioning has actually finished. Therefore, the status Provisioned indicates

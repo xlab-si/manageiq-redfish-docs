@@ -34,9 +34,36 @@ subfolder and can be downloaded over HTTP(S).
 
 === Firmware Update feature additionally requires:
 
-* A service that provides the firmware registry.
-* Firmware registry has to provide tagged firmware update binaries (the `manufacturer`
-and the `model` tags) where both of the tag values must match target system's exact values.
+* A Firmware Registry service that provides the information on the available
+  firmware update binaries.
+* A file serving service to provide the actual firmware update binaries.
+
+The Firmware Registry service has to provide tagged firmware update binaries
+(the `manufacturer` and the `model` tags) where both of the tag values must
+match target system's exact values. The firmware registry can be a simple
+RESTful service that supports basic HTTP authentication and  responds to a HTTP
+`GET` request with a JSON-formated response such as the following one:
+
+    [
+      {
+        "id": 1,
+        "description": "DELL BIOS update",
+        "version": "10.4.3",
+        "filename": "dell-bios-2019-03-23.bin",
+        "urls": [
+          "http://172.16.93.126:8080/files/dell-bios-2019-03-23.bin",
+          "https://172.16.93.126:8443/files/dell-bios-2019-03-23.bin"
+        ],
+        "compatible_server_models": [
+          {
+            "manufacturer": "Dell",
+            "model": "PowerEdge R740"
+          }
+        ]
+      },
+      ...
+    ]
+
 
 == Tested Systems
 

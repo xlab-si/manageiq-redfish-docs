@@ -287,10 +287,58 @@ before it finishes.
 === Physical Server Firmware Update
 include::redfish-release-notes.adoc[tags=fw-update-intro]
 
-NOTE: This guide assumes we have firmware registry already set up and registered with
-{product-title_short}. Moreover, this guide assumes registry contains at least one
-binary compatible with the physical server we are targeting for update.
+==== Adding a Firmware Registry
+We can manage Firmware Registries in *Compute -> Infrastructure -> Firmware
+Registry*.
 
+image::firmware_update/07-firmware_registries_menu.png[alt="Opening Firmware Registries",500,align="center"]
+
+Here, we use the *Configuration -> Add new Firmware Registry* to open
+a new registry dialog.
+
+image::firmware_update/09-add-new-firmware-registry-menu.png[alt="Add new Firmware Registry menu option",500,align="center"]
+
+image::firmware_update/10-add-new-firmware-registry-dialog.png[alt="Add a new Firmware Registry dialog",500,align="center"]
+
+We populate the fields for our Firmware Registry:
+
+* *Registry Type*: selection of the type of the Firmware Registry service.
+  Currently, only the *Rest API Depot* is supported. Please see the
+  <<Prerequisites>> section.
+* *Name*: human-friendly display name for the registry.
+* *URL*: the URL to the service's access point.
+* *Username*: the user name part of the access credentials.
+* *Password*: the password part of the access credentials.
+
+image::firmware_update/11-add-new-firmware-registry-dialog-populated.png[alt="Add a new Firmware Registry dialog, populated",500,align="center"]
+
+We confirm the new Firmware Registry settings by clicking *Add*.
+
+image::firmware_update/12-add-new-firmware-registry-success.png[alt="Successfully added a Firmware Registry",500,align="center"]
+
+After a few seconds, we refresh our browser window to see the registry appear
+on the list.
+
+image::firmware_update/13-firmware-registry-list.png[alt="Firmware Registries list, populated",500,align="center"]
+
+By clicking on the entry in the list, we open the summary view of the firmware
+registry. If all has gone well, we'll see a *Firmware Binaries* list populated
+by the entries available in the registry.
+
+image::firmware_update/14-firmware-registry-summary.png[alt="Firmware Registry summary",1000,align="center"]
+
+Clicking on this table's entries will display the details of the selected
+firmware update binary. The details also include a list that shows which
+manufacturer and model servers will be able to apply the particular firmware
+update binary.
+
+NOTE: It is currently not possible to edit a Firmware Registry once we have
+added it. To change any settings, we need to delete the Firmware Registry and
+then add a new one.
+
+We are now ready to request a firmware update of the physical systems.
+
+==== Requesting a Firmware Update
 We start off by visiting the physical servers list in *Compute -> Physical
 Infrastructure -> Servers*. On the server list, we check one or more checkboxes
 to select the servers to be targeted for firmware update. This enables the
